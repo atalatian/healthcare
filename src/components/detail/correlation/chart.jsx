@@ -36,26 +36,16 @@ export default function Chart(props){
         },
     });
 
-    const [trigger, setTrigger] = React.useState(true);
-
-    React.useEffect(()=>{
-        let resizeTimer;
-        const update = () => {
-            setTrigger(false)
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(function() {
-                setTrigger(true)
-            }, 250);
-        }
-        window.addEventListener("resize", update)
-    }, []);
-
-
     const classes = useStyles();
 
-    const renderChart = () => {
-        if (trigger){
-            return (
+
+    return (
+        <React.Fragment>
+            <Grid xs={12}>
+                <Paper className={classes.title} elevation={3}>
+                    {(props.fontWidth ? <h1 className={classes.h1Style}>Correlation</h1>
+                        :<h2 className={classes.h1Style}>Correlation</h2>)}
+                </Paper>
                 <React.Fragment>
                     <ResponsiveContainer width="100%" aspect={props.aspect}>
                         <ComposedChart
@@ -76,24 +66,6 @@ export default function Chart(props){
                         </ComposedChart>
                     </ResponsiveContainer>
                 </React.Fragment>
-            );
-        }else {
-            return(
-                <div className={classes.wrapper}>
-                    <CircularProgress/>
-                </div>
-            );
-        }
-    }
-
-    return (
-        <React.Fragment>
-            <Grid xs={12}>
-                <Paper className={classes.title} elevation={3}>
-                    {(props.fontWidth ? <h1 className={classes.h1Style}>Correlation</h1>
-                        :<h2 className={classes.h1Style}>Correlation</h2>)}
-                </Paper>
-                {renderChart()}
             </Grid>
 
         </React.Fragment>

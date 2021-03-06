@@ -25,26 +25,17 @@ export default function Diastole(props){
         },
     });
 
-    const [trigger, setTrigger] = React.useState(true);
-
-    React.useEffect(()=>{
-        let resizeTimer;
-        const update = () => {
-            setTrigger(false)
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(function() {
-                setTrigger(true)
-            }, 250);
-        }
-        window.addEventListener("resize", update)
-    }, []);
-
-
     const classes = useStyles();
 
-    const renderChart = () => {
-        if (trigger){
-            return (
+    return(
+        <React.Fragment>
+            <Grid xs={12}>
+                <Paper className={classes.title} elevation={3}>
+                    {(props.fontWidth ? <h1 className={classes.h1Style}>Pie Graphic/Diastole</h1>
+                        :<h2 className={classes.h1Style}>Pie Graphic/Diastole</h2>)}
+                </Paper>
+            </Grid>
+            <Grid container justify="space-between">
                 <React.Fragment>
                     <TotalTime borderRadius={props.borderRadius}
                                cx={props.cx}
@@ -63,26 +54,6 @@ export default function Diastole(props){
                                 aspect={props.aspect}
                                 fontWidth={props.fontWidth} width={props.width}/>
                 </React.Fragment>
-            );
-        }else {
-            return(
-                <div className={classes.wrapper}>
-                    <CircularProgress/>
-                </div>
-            );
-        }
-    }
-
-    return(
-        <React.Fragment>
-            <Grid xs={12}>
-                <Paper className={classes.title} elevation={3}>
-                    {(props.fontWidth ? <h1 className={classes.h1Style}>Pie Graphic/Diastole</h1>
-                        :<h2 className={classes.h1Style}>Pie Graphic/Diastole</h2>)}
-                </Paper>
-            </Grid>
-            <Grid container justify="space-between">
-                {renderChart()}
             </Grid>
         </React.Fragment>
     );

@@ -136,199 +136,6 @@ export default function NightPhase(props){
 
     const classes = useStyles();
 
-    const [trigger, setTrigger] = React.useState(true);
-
-    React.useEffect(()=>{
-        let resizeTimer;
-        const update = () => {
-            setTrigger(false)
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(function() {
-                setTrigger(true)
-            }, 250);
-        }
-        window.addEventListener("resize", update)
-    }, []);
-
-
-    const renderDetailChart = () => {
-        if (trigger){
-            return (
-                <React.Fragment>
-                    <div className="chart">
-                        <ResponsiveContainer width={props.histogramWidth} aspect={props.aspect}>
-                            <BarChart data={data}>
-                                <CartesianGrid stroke="gray" strokeDasharray="3 3" />
-                                <XAxis dataKey="name" />
-                                <YAxis tickCount="10"/>
-                                <Tooltip/>
-                                <Legend />
-                                <Bar dataKey="Systole" fill="#003399" />
-                            </BarChart>
-                        </ResponsiveContainer>
-                    </div>
-                    <div className="chart">
-                        <ResponsiveContainer width={props.histogramWidth} aspect={props.aspect}>
-                            <BarChart data={data}>
-                                <CartesianGrid stroke="gray" strokeDasharray="3 3" />
-                                <XAxis dataKey="name" />
-                                <YAxis tickCount="10"/>
-                                <Tooltip/>
-                                <Legend />
-                                <Bar dataKey="Diastole" fill="#009933" />
-                            </BarChart>
-                        </ResponsiveContainer>
-                    </div>
-                    <div className="chart">
-                        <ResponsiveContainer width={props.histogramWidth} aspect={props.aspect}>
-                            <BarChart data={data}>
-                                <CartesianGrid stroke="gray" strokeDasharray="3 3" />
-                                <XAxis dataKey="name" />
-                                <YAxis tickCount="10"/>
-                                <Tooltip/>
-                                <Legend />
-                                <Bar dataKey="MAP" fill="#993300" />
-                            </BarChart>
-                        </ResponsiveContainer>
-                    </div>
-                    <div className="chart">
-                        <ResponsiveContainer width={props.histogramWidth} aspect={props.aspect}>
-                            <BarChart data={data}>
-                                <CartesianGrid stroke="gray" strokeDasharray="3 3" />
-                                <XAxis dataKey="name" />
-                                <YAxis tickCount="10"/>
-                                <Tooltip/>
-                                <Legend />
-                                <Bar dataKey="HR" fill="#990033" />
-                            </BarChart>
-                        </ResponsiveContainer>
-                    </div>
-                </React.Fragment>
-            );
-        }else {
-            return(
-                <div className={classes.wrapper}>
-                    <CircularProgress/>
-                </div>
-            );
-        }
-    }
-
-    const renderPrintChart = () => {
-        if (trigger){
-            if (Number.isInteger(props.histogramWidth)){
-                return (
-                    <React.Fragment>
-                        <div className="print">
-                            <BarChart width={props.histogramWidth}
-                                      height={props.histogramWidth/props.aspect} data={data}>
-                                <CartesianGrid stroke="gray" strokeDasharray="3 3" />
-                                <XAxis dataKey="name" />
-                                <YAxis tickCount="10"/>
-                                <Tooltip/>
-                                <Legend />
-                                <Bar isAnimationActive={false} dataKey="Systole" fill="#003399" />
-                            </BarChart>
-                        </div>
-                        <div className="print">
-                            <BarChart width={props.histogramWidth}
-                                      height={props.histogramWidth/props.aspect} data={data}>
-                                <CartesianGrid stroke="gray" strokeDasharray="3 3" />
-                                <XAxis dataKey="name" />
-                                <YAxis tickCount="10"/>
-                                <Tooltip/>
-                                <Legend />
-                                <Bar isAnimationActive={false} dataKey="Diastole" fill="#009933" />
-                            </BarChart>
-                        </div>
-                        <div className="print">
-                            <BarChart width={props.histogramWidth}
-                                      height={props.histogramWidth/props.aspect} data={data}>
-                                <CartesianGrid stroke="gray" strokeDasharray="3 3" />
-                                <XAxis dataKey="name" />
-                                <YAxis tickCount="10"/>
-                                <Tooltip/>
-                                <Legend />
-                                <Bar isAnimationActive={false} dataKey="MAP" fill="#993300" />
-                            </BarChart>
-                        </div>
-                        <div className="print">
-                            <BarChart width={props.histogramWidth}
-                                      height={props.histogramWidth/props.aspect} data={data}>
-                                <CartesianGrid stroke="gray" strokeDasharray="3 3" />
-                                <XAxis dataKey="name" />
-                                <YAxis tickCount="10"/>
-                                <Tooltip/>
-                                <Legend />
-                                <Bar isAnimationActive={false} dataKey="HR" fill="#990033" />
-                            </BarChart>
-                        </div>
-                    </React.Fragment>
-                );
-            }
-            else{
-                return (
-                    <React.Fragment>
-                        <div className="print">
-                            <ResponsiveContainer width={props.histogramWidth} aspect={props.aspect}>
-                                <BarChart data={data}>
-                                    <CartesianGrid stroke="gray" strokeDasharray="3 3" />
-                                    <XAxis dataKey="name" />
-                                    <YAxis tickCount="10"/>
-                                    <Tooltip/>
-                                    <Legend />
-                                    <Bar isAnimationActive={false} dataKey="Systole" fill="#003399" />
-                                </BarChart>
-                            </ResponsiveContainer>
-                        </div>
-                        <div className="print">
-                            <ResponsiveContainer width={props.histogramWidth} aspect={props.aspect}>
-                                <BarChart data={data}>
-                                    <CartesianGrid stroke="gray" strokeDasharray="3 3" />
-                                    <XAxis dataKey="name" />
-                                    <YAxis tickCount="10"/>
-                                    <Tooltip/>
-                                    <Legend />
-                                    <Bar isAnimationActive={false} dataKey="Diastole" fill="#009933" />
-                                </BarChart>
-                            </ResponsiveContainer>
-                        </div>
-                        <div className="print">
-                            <ResponsiveContainer width={props.histogramWidth} aspect={props.aspect}>
-                                <BarChart data={data}>
-                                    <CartesianGrid stroke="gray" strokeDasharray="3 3" />
-                                    <XAxis dataKey="name" />
-                                    <YAxis tickCount="10"/>
-                                    <Tooltip/>
-                                    <Legend />
-                                    <Bar isAnimationActive={false} dataKey="MAP" fill="#993300" />
-                                </BarChart>
-                            </ResponsiveContainer>
-                        </div>
-                        <div className="print">
-                            <ResponsiveContainer width={props.histogramWidth} aspect={props.aspect}>
-                                <BarChart data={data}>
-                                    <CartesianGrid stroke="gray" strokeDasharray="3 3" />
-                                    <XAxis dataKey="name" />
-                                    <YAxis tickCount="10"/>
-                                    <Tooltip/>
-                                    <Legend />
-                                    <Bar isAnimationActive={false} dataKey="HR" fill="#990033" />
-                                </BarChart>
-                            </ResponsiveContainer>
-                        </div>
-                    </React.Fragment>
-                );
-            }
-        }else {
-            return(
-                <div className={classes.wrapper}>
-                    <CircularProgress/>
-                </div>
-            );
-        }
-    }
-
     return(
         <React.Fragment>
             <Grid xs={12}>
@@ -338,7 +145,56 @@ export default function NightPhase(props){
                         :<h2 className="h1_style">Histogram/Night Phase</h2>)}
                 </Paper>
             </Grid>
-            {(props.print ? renderPrintChart() : renderDetailChart())}
+            <React.Fragment>
+                <div className="chart">
+                    <ResponsiveContainer width={props.histogramWidth} aspect={props.aspect}>
+                        <BarChart data={data}>
+                            <CartesianGrid stroke="gray" strokeDasharray="3 3" />
+                            <XAxis dataKey="name" />
+                            <YAxis tickCount="10"/>
+                            <Tooltip/>
+                            <Legend />
+                            <Bar dataKey="Systole" fill="#003399" />
+                        </BarChart>
+                    </ResponsiveContainer>
+                </div>
+                <div className="chart">
+                    <ResponsiveContainer width={props.histogramWidth} aspect={props.aspect}>
+                        <BarChart data={data}>
+                            <CartesianGrid stroke="gray" strokeDasharray="3 3" />
+                            <XAxis dataKey="name" />
+                            <YAxis tickCount="10"/>
+                            <Tooltip/>
+                            <Legend />
+                            <Bar dataKey="Diastole" fill="#009933" />
+                        </BarChart>
+                    </ResponsiveContainer>
+                </div>
+                <div className="chart">
+                    <ResponsiveContainer width={props.histogramWidth} aspect={props.aspect}>
+                        <BarChart data={data}>
+                            <CartesianGrid stroke="gray" strokeDasharray="3 3" />
+                            <XAxis dataKey="name" />
+                            <YAxis tickCount="10"/>
+                            <Tooltip/>
+                            <Legend />
+                            <Bar dataKey="MAP" fill="#993300" />
+                        </BarChart>
+                    </ResponsiveContainer>
+                </div>
+                <div className="chart">
+                    <ResponsiveContainer width={props.histogramWidth} aspect={props.aspect}>
+                        <BarChart data={data}>
+                            <CartesianGrid stroke="gray" strokeDasharray="3 3" />
+                            <XAxis dataKey="name" />
+                            <YAxis tickCount="10"/>
+                            <Tooltip/>
+                            <Legend />
+                            <Bar dataKey="HR" fill="#990033" />
+                        </BarChart>
+                    </ResponsiveContainer>
+                </div>
+            </React.Fragment>
         </React.Fragment>
     );
 }

@@ -146,196 +146,6 @@ function GraphicalView(props){
 
     const classes = useStyles();
 
-    const [trigger, setTrigger] = React.useState(true);
-
-    React.useEffect(()=>{
-        let resizeTimer;
-        const update = () => {
-            setTrigger(false)
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(function() {
-                setTrigger(true)
-            }, 250);
-        }
-        window.addEventListener("resize", update)
-    }, []);
-
-    const renderDetailChart = () => {
-        if (trigger){
-            return (
-                <React.Fragment>
-                    <div className="chart">
-                        <ResponsiveContainer width="100%" aspect={props.aspect}>
-                            <LineChart data={data}
-                                       margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-                                <CartesianGrid stroke="gray" strokeDasharray="3 3" />
-                                <XAxis dataKey="name" />
-                                <YAxis tickCount="10"/>
-                                <Tooltip/>
-                                <Legend />
-                                <Line type="monotone"
-                                      strokeWidth="1.5"
-                                      dataKey="Systole" stroke="#003399" />
-                                <Line type="monotone"
-                                      strokeWidth="0.4"
-                                      dataKey="MAP" stroke="#990033" />
-                                <Line type="monotone"
-                                      strokeWidth="1.5"
-                                      dataKey="Diastole" stroke="#009933" />
-                                <Line type="monotone"
-                                      strokeWidth="1.5"
-                                      dataKey="Average1" stroke="#990033" />
-                                <Line type="monotone"
-                                      strokeWidth="1.5"
-                                      dataKey="Average2" stroke="#990033" />
-                            </LineChart>
-                        </ResponsiveContainer>
-                    </div>
-                    <div className="chart">
-                        <ResponsiveContainer width="100%" aspect={props.aspect}>
-                            <LineChart data={data}
-                                       margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-                                <CartesianGrid stroke="gray" strokeDasharray="3 3" />
-                                <XAxis dataKey="name" />
-                                <YAxis tickCount="10" />
-                                <Tooltip/>
-                                <Legend />
-                                <Line type="monotone"
-                                      strokeWidth="0.4"
-                                      dataKey="HR" stroke="#990033" />
-                            </LineChart>
-                        </ResponsiveContainer>
-                    </div>
-                </React.Fragment>
-            );
-        }else {
-            return(
-                <div className={classes.wrapper}>
-                    <CircularProgress/>
-                </div>
-            );
-        }
-    }
-
-    const renderPrintChart = () => {
-        if (trigger){
-            if (Number.isInteger(props.width)){
-                return (
-                    <React.Fragment>
-                        <div className="print">
-                            <LineChart data={data}
-                                       width={props.width}
-                                       height={props.width/props.aspect}
-                                       margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-                                <CartesianGrid stroke="gray" strokeDasharray="3 3" />
-                                <XAxis dataKey="name" />
-                                <YAxis  tickCount="10"/>
-                                <Tooltip/>
-                                <Legend />
-                                <Line type="monotone"
-                                      isAnimationActive={false}
-                                      strokeWidth="1.5"
-                                      dataKey="Systole" stroke="#003399" />
-                                <Line type="monotone" strokeWidth="0.4"
-                                      isAnimationActive={false}
-                                      dataKey="MAP"
-                                      stroke="#990033" />
-                                <Line type="monotone"
-                                      isAnimationActive={false}
-                                      strokeWidth="1.5"
-                                      dataKey="Diastole" stroke="#009933" />
-                                <Line type="monotone"
-                                      isAnimationActive={false}
-                                      strokeWidth="1.5"
-                                      dataKey="Average1" stroke="#990033" />
-                                <Line type="monotone"
-                                      isAnimationActive={false}
-                                      strokeWidth="1.5"
-                                      dataKey="Average2" stroke="#990033" />
-                            </LineChart>
-                        </div>
-                        <div className="print">
-                            <LineChart data={data}
-                                       width={props.width}
-                                       height={props.width/props.aspect}
-                                       margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-                                <CartesianGrid stroke="gray" strokeDasharray="3 3" />
-                                <XAxis dataKey="name" />
-                                <YAxis tickCount="10"/>
-                                <Tooltip/>
-                                <Legend />
-                                <Line type="monotone"
-                                      isAnimationActive={false}
-                                      strokeWidth="0.4"
-                                      dataKey="HR" stroke="#990033" />
-                            </LineChart>
-                        </div>
-                    </React.Fragment>
-                );
-            }
-            else{
-                return (
-                    <React.Fragment>
-                        <div className="print">
-                            <ResponsiveContainer width="100%" aspect={props.aspect}>
-                                <LineChart data={data}
-                                           margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-                                    <CartesianGrid stroke="gray" strokeDasharray="3 3" />
-                                    <XAxis dataKey="name" />
-                                    <YAxis  tickCount="10"/>
-                                    <Tooltip/>
-                                    <Legend />
-                                    <Line type="monotone"
-                                          isAnimationActive={false}
-                                          strokeWidth="1.5"
-                                          dataKey="Systole" stroke="#003399" />
-                                    <Line type="monotone" strokeWidth="0.4"
-                                          isAnimationActive={false}
-                                          dataKey="MAP"
-                                          stroke="#990033" />
-                                    <Line type="monotone"
-                                          isAnimationActive={false}
-                                          strokeWidth="1.5"
-                                          dataKey="Diastole" stroke="#009933" />
-                                    <Line type="monotone"
-                                          isAnimationActive={false}
-                                          strokeWidth="1.5"
-                                          dataKey="Average1" stroke="#990033" />
-                                    <Line type="monotone"
-                                          isAnimationActive={false}
-                                          strokeWidth="1.5"
-                                          dataKey="Average2" stroke="#990033" />
-                                </LineChart>
-                            </ResponsiveContainer>
-                        </div>
-                        <div className="print">
-                            <ResponsiveContainer width="100%" aspect={props.aspect}>
-                                <LineChart data={data}
-                                           margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-                                    <CartesianGrid stroke="gray" strokeDasharray="3 3" />
-                                    <XAxis dataKey="name" />
-                                    <YAxis tickCount="10"/>
-                                    <Tooltip/>
-                                    <Legend />
-                                    <Line type="monotone"
-                                          isAnimationActive={false}
-                                          strokeWidth="0.4"
-                                          dataKey="HR" stroke="#990033" />
-                                </LineChart>
-                            </ResponsiveContainer>
-                        </div>
-                    </React.Fragment>
-                );
-            }
-        }else {
-            return(
-                <div className={classes.wrapper}>
-                    <CircularProgress/>
-                </div>
-            );
-        }
-    }
-
     return(
         <React.Fragment>
             <Grid xs={12}>
@@ -345,7 +155,50 @@ function GraphicalView(props){
                         :<h2 className="h1_style">Hourly Averages/Graphical View</h2>)}
                 </Paper>
             </Grid>
-            {(props.print ? renderPrintChart() : renderDetailChart())}
+            <React.Fragment>
+                <div className="chart">
+                    <ResponsiveContainer width="100%" aspect={props.aspect}>
+                        <LineChart data={data}
+                                   margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+                            <CartesianGrid stroke="gray" strokeDasharray="3 3" />
+                            <XAxis dataKey="name" />
+                            <YAxis tickCount="10"/>
+                            <Tooltip/>
+                            <Legend />
+                            <Line type="monotone"
+                                  strokeWidth="1.5"
+                                  dataKey="Systole" stroke="#003399" />
+                            <Line type="monotone"
+                                  strokeWidth="0.4"
+                                  dataKey="MAP" stroke="#990033" />
+                            <Line type="monotone"
+                                  strokeWidth="1.5"
+                                  dataKey="Diastole" stroke="#009933" />
+                            <Line type="monotone"
+                                  strokeWidth="1.5"
+                                  dataKey="Average1" stroke="#990033" />
+                            <Line type="monotone"
+                                  strokeWidth="1.5"
+                                  dataKey="Average2" stroke="#990033" />
+                        </LineChart>
+                    </ResponsiveContainer>
+                </div>
+                <div className="chart">
+                    <ResponsiveContainer width="100%" aspect={props.aspect}>
+                        <LineChart data={data}
+                                   margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+                            <CartesianGrid stroke="gray" strokeDasharray="3 3" />
+                            <XAxis dataKey="name" />
+                            <YAxis tickCount="10" />
+                            <Tooltip/>
+                            <Legend />
+                            <Line type="monotone"
+                                  strokeWidth="0.4"
+                                  dataKey="HR" stroke="#990033" />
+                        </LineChart>
+                    </ResponsiveContainer>
+                </div>
+            </React.Fragment>
         </React.Fragment>
     );
 }
