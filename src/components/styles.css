@@ -1,0 +1,153 @@
+.MuiAppBar-colorPrimary{
+    background-color: #009999 !important;
+}
+
+.MuiFormLabel-root.Mui-focused{
+    color: #ec6602 !important;
+}
+
+.MuiInput-underline:after{
+    border-bottom: 2px solid #ec6602 !important;
+}
+
+.MuiPickersToolbar-toolbar{
+    background-color: #009999 !important;
+}
+
+.MuiPickersClock-pin{
+    background-color: #009999 !important;
+}
+
+.MuiPickersClockPointer-pointer{
+    background-color: #009999 !important;
+}
+
+.MuiPickersClockPointer-noPoint{
+    background-color: #009999 !important;
+}
+
+.MuiPickersClockPointer-thumb{
+    border: 14px solid #009999 !important;
+}
+
+.MuiButton-textPrimary{
+    color: #009999 !important;
+}
+
+.MuiButton-containedPrimary{
+    background-color: #ec6602 !important;
+}
+
+.MuiPickersDay-daySelected{
+    background-color: #009999 !important;
+}
+
+.MuiFab-primary{
+    background-color: #ec6602 !important;
+}
+
+.MuiTab-textColorPrimary.Mui-selected{
+    color: #ec6602 !important;
+}
+
+.PrivateTabIndicator-colorPrimary-7{
+    background-color: #ec6602 !important;
+}
+
+.PrivateTabIndicator-colorPrimary-6{
+    background-color: #ec6602 !important;
+}
+
+.PrivateTabIndicator-colorSecondary-7{
+    background-color: #ec6602 !important;
+}
+
+.MuiTabs-indicator{
+    background-color: #ec6602 !important;
+}
+
+.MuiCheckbox-colorSecondary.Mui-checked{
+    color: #ec6602 !important;
+}
+
+
+@media only screen and (max-width: 450px) {
+    .MuiBox-root{
+        padding: 5px !important;
+        padding-top: 24px !important;
+    }
+}
+
+.dashboard{
+    width: 95%;
+    min-height: calc(100vh - 64px);
+    display: flex;
+    margin: auto;
+    text-align: center;
+    flex-direction: column;
+}
+
+.dashboard div:first-child{
+    margin-top: 24px;
+}
+
+.dashboard div:last-child{
+    margin: auto;
+}
+
+.divider{
+    width: 100%;
+    background-color: gray;
+    height: 100%;
+}
+
+.MuiTab-textColorInherit.Mui-selected{
+    opacity: 1;
+    color: #ec6602;
+}
+
+.chart{
+    margin: 1px;
+}
+
+.title{
+    width: calc(100vw - 332px);
+}
+
+
+.h1_style{
+    padding: 10px;
+    margin-top: 0;
+}
+
+
+.pieContainer{
+    display: flex;
+}
+
+.h2_style{
+    margin: 0;
+    padding: 10px;
+}
+
+.sub_title{
+    background-color: white !important;
+    color: #ec6602 !important;
+}
+
+.composedChart{
+    width: fit-content;
+    margin: auto;
+}
+
+.test{
+    width: 200px;
+}
+
+.MuiCircularProgress-colorPrimary{
+    color: #ec6602 !important;
+}
+
+.MuiDivider-root{
+    background-color: white !important;
+}

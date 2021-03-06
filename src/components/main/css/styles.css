@@ -1,0 +1,7 @@
+.main_wrapper{
+    flex-grow: 1;
+}
+
+.logo_wrapper img{
+    width: 100%;
+}
