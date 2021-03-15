@@ -13,6 +13,7 @@ import Paper from '@material-ui/core/Paper';
 import {Grid} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import CircularProgress from '@material-ui/core/CircularProgress';
+import useReRender from "../../useReRender";
 
 
 const data = [
@@ -145,19 +146,23 @@ function GraphicalView(props){
 
     const classes = useStyles();
 
+    const reRender = useReRender()
+
     const [trigger, setTrigger] = React.useState(true);
 
+    const update = (resizeTimer) => {
+        setTrigger(false)
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            setTrigger(true)
+        }, 250);
+    }
+
+    let resizeTimer;
+
     React.useEffect(()=>{
-        let resizeTimer;
-        const update = () => {
-            setTrigger(false)
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(function() {
-                setTrigger(true)
-            }, 250);
-        }
-        window.addEventListener("resize", update)
-    }, []);
+        update(resizeTimer)
+    }, [reRender]);
 
 
     const renderChart = () => {
